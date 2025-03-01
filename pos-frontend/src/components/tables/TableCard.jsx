@@ -1,8 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { getRandomBg } from "../../utils";
 
-const TableCard = ({ name, status, initials }) => {
+const TableCard = ({ name, status, initials, seats }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (status === "Booked") return;
+
+    navigate(`/menu`);
+  };
+
   return (
-    <div className="w-[400px] hover:bg-[#2e2e2e] bg-[#262626] p-5 rounded-lg mb-4 cursor-pointer">
+    <div
+      onClick={handleClick}
+      className="w-[400px] hover:bg-[#2e2e2e] bg-[#262626] p-5 rounded-lg mb-4 cursor-pointer"
+    >
       <div className="flex items-center justify-between px-1">
         <h1 className="text-[#f5f5f5] text-xl font-semibold">{name}</h1>
         <p
@@ -22,6 +34,9 @@ const TableCard = ({ name, status, initials }) => {
           {initials}
         </h1>
       </div>
+      <p className="text-[#ababab] text-sm">
+        Seats: <span className="text-[#f5f5f5]">{seats}</span>
+      </p>
     </div>
   );
 };

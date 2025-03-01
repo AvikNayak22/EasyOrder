@@ -51,7 +51,7 @@ const Orders = () => {
         </div>
       </div>
 
-      <div className="flex flex-wrap gap-6 px-10 py-4 mb-12">
+      <div className="flex flex-wrap gap-6 px-10 py-4 mb-16">
         <OrderCard />
         <OrderCard />
         <OrderCard />

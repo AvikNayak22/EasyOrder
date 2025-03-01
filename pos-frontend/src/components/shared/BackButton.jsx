@@ -7,7 +7,7 @@ const BackButton = () => {
   return (
     <button
       onClick={() => navigate(-1)}
-      className="bg-[#f6b100] p-3 text-2xl font-bold rounded-full text-white"
+      className="bg-[#f6b100] p-2 text-2xl font-bold rounded-full text-white"
     >
       <TiArrowBack />
     </button>
