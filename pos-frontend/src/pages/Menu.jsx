@@ -1,6 +1,10 @@
 import MenuContainer from "../components/menu/MenuContainer";
 import BackButton from "../components/shared/BackButton";
 import BottomNav from "../components/shared/BottomNav";
+import CartInfo from "../components/menu/CartInfo";
+import Bill from "../components/menu/Bill";
+import CustomerInfo from "../components/menu/CustomerInfo";
+
 import { MdRestaurantMenu } from "react-icons/md";
 
 const Menu = () => {
@@ -34,7 +38,17 @@ const Menu = () => {
       </div>
 
       {/* right section */}
-      <div className="flex-[1] bg-blue-500">3</div>
+      <div className="flex-[1] mb-20 bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg p-2">
+        {/* Customer Info */}
+        <CustomerInfo />
+        <hr className="border-[#2a2a2a] border-t-2 mx-4" />
+        {/* Cart Items */}
+        <CartInfo />
+
+        <hr className="border-[#2a2a2a] border-t-2 mx-4" />
+        {/* Bills */}
+        <Bill />
+      </div>
 
       <BottomNav />
     </section>
