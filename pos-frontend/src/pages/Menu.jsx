@@ -1,3 +1,5 @@
+import { useSelector } from "react-redux";
+
 import MenuContainer from "../components/menu/MenuContainer";
 import BackButton from "../components/shared/BackButton";
 import BottomNav from "../components/shared/BottomNav";
@@ -8,6 +10,8 @@ import CustomerInfo from "../components/menu/CustomerInfo";
 import { MdRestaurantMenu } from "react-icons/md";
 
 const Menu = () => {
+  const customerData = useSelector((state) => state.customer);
+
   return (
     <section className="bg-[#1f1f1f] min-h-[calc(100vh-5rem)] h-full overflow-y-auto flex gap-3">
       {/* left section */}
@@ -24,10 +28,10 @@ const Menu = () => {
               <MdRestaurantMenu className="text-white text-4xl" />
               <div className="flex flex-col items-start">
                 <h1 className="text-md text-[#f5f5f5] font-semibold">
-                  Customer Name
+                  {customerData.customerName || "Customer Name"}
                 </h1>
                 <p className="text-xs text-[#ababab] font-medium">
-                  Table No: 2
+                  {customerData.tableNo || "N/A"}
                 </p>
               </div>
             </div>
