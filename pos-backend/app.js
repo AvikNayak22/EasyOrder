@@ -10,9 +10,17 @@ const app = express();
 const PORT = config.port;
 connectDB();
 
+//Middlewares
+app.use(express.json()); // Parse JSON payloads
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+
+//Root endpoint
 app.get("/", (req, res) => {
   res.json({ message: "Hello from pos server" });
 });
+
+//Other endpoints
+app.use("/api/user", require("./routes/userRoute"));
 
 //Global error handler
 app.use(globalErrorHandler);
