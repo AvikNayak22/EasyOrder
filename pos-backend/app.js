@@ -3,7 +3,7 @@ const express = require("express");
 const connectDB = require("./config/database");
 const config = require("./config/config");
 const globalErrorHandler = require("./middlewares/globalErrorHandler");
-const createHttpError = require("http-errors");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 
@@ -13,6 +13,7 @@ connectDB();
 //Middlewares
 app.use(express.json()); // Parse JSON payloads
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
+app.use(cookieParser()); // Parse cookies
 
 //Root endpoint
 app.get("/", (req, res) => {
