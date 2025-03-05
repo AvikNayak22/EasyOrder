@@ -25,7 +25,6 @@ function Layout() {
     </>
   );
 }
-
 const App = () => {
   return (
     <Router>

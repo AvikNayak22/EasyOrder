@@ -42,7 +42,7 @@ const Menu = () => {
       </div>
 
       {/* right section */}
-      <div className="flex-[1] mb-20 bg-[#1a1a1a] mt-4 mr-3 h-[780px] rounded-lg p-2">
+      <div className="flex-[1] mb-20 bg-[#1a1a1a] mt-4 mr-3 h-[800px] rounded-lg p-2">
         {/* Customer Info */}
         <CustomerInfo />
         <hr className="border-[#2a2a2a] border-t-2 mx-4" />
