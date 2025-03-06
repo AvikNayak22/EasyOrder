@@ -1,10 +1,44 @@
+import { useState } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { addTable } from "../../https";
+
+import { enqueueSnackbar } from "notistack";
 import { motion } from "framer-motion";
 import { IoMdClose } from "react-icons/io";
 
 const Modal = ({ setIsTableModalOpen }) => {
+  const [tableData, setTableData] = useState({
+    tableNo: "",
+    seats: "",
+  });
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setTableData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(tableData);
+    tableMutation.mutate(tableData);
+  };
+
   const handleCloseModal = () => {
     setIsTableModalOpen(false);
   };
+
+  const tableMutation = useMutation({
+    mutationFn: (reqData) => addTable(reqData),
+    onSuccess: (res) => {
+      setIsTableModalOpen(false);
+      const { data } = res;
+      enqueueSnackbar(data.message, { variant: "success" });
+    },
+    onError: (error) => {
+      const { data } = error.response;
+      enqueueSnackbar(data.message, { variant: "error" });
+    },
+  });
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -27,7 +61,7 @@ const Modal = ({ setIsTableModalOpen }) => {
         </div>
 
         {/* Modal Content */}
-        <form className="space-y-4 mt-8">
+        <form onSubmit={handleSubmit} className="space-y-4 mt-8">
           <div>
             <label className="block text-[#ababab] mb-2 mt-3 text-sm font-medium">
               Table Number
@@ -35,7 +69,9 @@ const Modal = ({ setIsTableModalOpen }) => {
             <div className="flex items-center rounded-lg py-3 px-4 bg-[#1f1f1f]">
               <input
                 type="number"
-                name="tableNumber"
+                name="tableNo"
+                value={tableData.tableNo}
+                onChange={handleInputChange}
                 placeholder="Enter table number"
                 className="bg-transparent flex-1 text-white focus:outline-none"
                 required
@@ -49,7 +85,9 @@ const Modal = ({ setIsTableModalOpen }) => {
             <div className="flex items-center rounded-lg py-3 px-4 bg-[#1f1f1f]">
               <input
                 type="number"
-                name="numberOfSeats"
+                name="seats"
+                value={tableData.seats}
+                onChange={handleInputChange}
                 placeholder="Enter number of seats"
                 className="bg-transparent flex-1 text-white focus:outline-none"
                 required

@@ -1,13 +1,13 @@
 export const getRandomBg = () => {
   const colors = [
-    "bg-blue-500",
-    "bg-emerald-500",
-    "bg-amber-400",
-    "bg-orange-500",
-    "bg-purple-500",
-    "bg-pink-500",
-    "bg-red-500",
-    "bg-green-500",
+    "#3B82F6",
+    "#10B981",
+    "#F59E0B",
+    "#F97316",
+    "#A855F7",
+    "#EC4899",
+    "#EF4444",
+    "#22C55E",
   ];
 
   return colors[Math.floor(Math.random() * colors.length)];

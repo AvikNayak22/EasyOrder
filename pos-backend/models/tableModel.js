@@ -6,6 +6,10 @@ const tableSchema = new mongoose.Schema({
     type: String,
     default: "available",
   },
+  seats: {
+    type: Number,
+    required: true,
+  },
   currentOrder: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Order",

@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { updateTable } from "../../redux/slices/customerSlice";
 
-import { getRandomBg } from "../../utils";
+import { getAvatarName, getRandomBg } from "../../utils";
 
 const TableCard = ({ name, status, initials, seats }) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ const TableCard = ({ name, status, initials, seats }) => {
       className="w-[400px] hover:bg-[#2e2e2e] bg-[#262626] p-5 rounded-lg mb-4 cursor-pointer"
     >
       <div className="flex items-center justify-between px-1">
-        <h1 className="text-[#f5f5f5] text-xl font-semibold">{name}</h1>
+        <h1 className="text-[#f5f5f5] text-xl font-semibold">Table: {name}</h1>
         <p
           className={` ${
             status === "Booked"
@@ -35,9 +35,10 @@ const TableCard = ({ name, status, initials, seats }) => {
       </div>
       <div className="flex items-center justify-center mt-5 mb-10">
         <h1
-          className={`${getRandomBg()} flex items-center justify-center w-16 h-16 text-white rounded-full p-5 text-2xl`}
+          className={`flex items-center justify-center w-16 h-16 text-white rounded-full p-5 text-2xl`}
+          style={{ backgroundColor: initials ? getRandomBg() : "#1f1f1f" }}
         >
-          {initials}
+          {getAvatarName(initials) || "N/A"}
         </h1>
       </div>
       <p className="text-[#ababab] text-sm">
