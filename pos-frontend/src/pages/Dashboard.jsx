@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import Metrics from "../components/dashboard/Metrics";
 import RecentOrders from "../components/dashboard/RecentOrders";
+import Modal from "../components/dashboard/Modal";
 
 import { BiSolidDish } from "react-icons/bi";
 import { MdCategory, MdTableBar } from "react-icons/md";
@@ -16,6 +17,11 @@ const tabs = ["Metrics", "Orders", "Payment"];
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState(tabs[0]);
+  const [isTableModalOpen, setIsTableModalOpen] = useState(false);
+
+  const handleOpenModal = (action) => {
+    if (action === "table") setIsTableModalOpen(true);
+  };
 
   return (
     <div className="bg-[#1f1f1f] min-h-[calc(100vh-5rem)] h-full overflow-y-auto">
@@ -24,6 +30,7 @@ const Dashboard = () => {
           {buttons.map(({ label, icon, action }) => {
             return (
               <button
+                onClick={() => handleOpenModal(action)}
                 key={label}
                 className="bg-[#1a1a1a] hover:bg-[#262626] px-8 py-3 rounded-lg text-[#f5f5f5] font-semibold text-md flex items-center gap-2"
               >
@@ -54,6 +61,8 @@ const Dashboard = () => {
 
       {activeTab === "Metrics" && <Metrics />}
       {activeTab === "Orders" && <RecentOrders />}
+
+      {isTableModalOpen && <Modal setIsTableModalOpen={setIsTableModalOpen} />}
     </div>
   );
 };
