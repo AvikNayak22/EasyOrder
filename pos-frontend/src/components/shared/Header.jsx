@@ -7,6 +7,7 @@ import { logout } from "../../https";
 import { FaSearch, FaUserCircle, FaBell } from "react-icons/fa";
 import logo from "../../assets/images/logo.png";
 import { IoLogOut } from "react-icons/io5";
+import { MdDashboard } from "react-icons/md";
 
 const Header = () => {
   const userData = useSelector((state) => state.user);
@@ -49,6 +50,14 @@ const Header = () => {
 
       {/* logged user details */}
       <div className="flex items-center gap-4">
+        {userData.role === "Admin" && (
+          <div
+            onClick={() => navigate("/dashboard")}
+            className="bg-[#2a2a2a] p-3 rounded-full cursor-pointer"
+          >
+            <MdDashboard className="text-white text-2xl" />
+          </div>
+        )}
         <div className="bg-[#2a2a2a] p-3 rounded-full cursor-pointer">
           <FaBell className="text-white text-2xl" />
         </div>
