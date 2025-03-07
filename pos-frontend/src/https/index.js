@@ -17,3 +17,9 @@ export const logout = () => api.post("/api/user/logout");
 
 export const addTable = (data) => api.post("/api/table/", data);
 export const getTables = () => api.get("/api/table");
+
+//Payment Endpoints
+export const createOrderWithRazorpay = (data) =>
+  api.post("/api/payment/create-order", data);
+export const verifyPaymentWithRazorpay = (data) =>
+  api.post("/api/payment/verify-payment", data);
