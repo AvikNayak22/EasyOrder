@@ -2,6 +2,7 @@ const Razorpay = require("razorpay");
 const config = require("../config/config");
 const crypto = require("crypto");
 const createHttpError = require("http-errors");
+const Payment = require("../models/paymentModel");
 
 const createOrder = async (req, res, next) => {
   const razorpay = new Razorpay({
@@ -72,11 +73,25 @@ const WebHookVerification = async (req, res, next) => {
         const payment = req.body.payload.payment.entity;
 
         console.log(`Payment captured: ${payment.amount / 100} INR`);
+
+        // Save payment details to the database
+        const newPayment = new Payment({
+          paymentId: payment.id,
+          orderId: payment.order_id,
+          amount: payment.amount / 100,
+          currency: payment.currency,
+          status: payment.status,
+          method: payment.method,
+          email: payment.email,
+          contact: payment.contact,
+          createdAt: new Date(payment.createdAt * 1000),
+        });
+
+        await newPayment.save();
       }
 
       res.status(200).json({
         success: true,
-        message: "Webhook verified successfully!",
       });
     } else {
       const error = createHttpError(400, "Invalid signature!");

@@ -402,35 +402,34 @@ export const menus = [
 
 export const metricsData = [
   {
-    title: "Revenue",
-    value: "₹50,846.90",
-    percentage: "12%",
+    title: "Total Earnings",
+    value: "₹25,846.50",
+    percentage: "15%",
     color: "#025cca",
-    isIncrease: false,
+    isIncrease: true,
   },
   {
-    title: "Outbound Clicks",
-    value: "10,342",
-    percentage: "16%",
+    title: "Orders Today",
+    value: "142",
+    percentage: "8%",
     color: "#02ca3a",
     isIncrease: true,
   },
   {
-    title: "Total Customer",
-    value: "19,720",
-    percentage: "10%",
+    title: "Total Customers",
+    value: "256",
+    percentage: "12%",
     color: "#f6b100",
     isIncrease: true,
   },
   {
-    title: "Event Count",
-    value: "20,000",
-    percentage: "10%",
+    title: "Average Order Value",
+    value: "₹450.00",
+    percentage: "5%",
     color: "#be3e3f",
-    isIncrease: false,
+    isIncrease: true,
   },
 ];
-
 export const itemsData = [
   {
     title: "Total Categories",

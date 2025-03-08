@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import { formatDate, formatTime, getAvatarName } from "../../utils";
+import { formatDateAndTime, getAvatarName } from "../../utils";
 
 const CustomerInfo = () => {
   const [dateTime, setDateTime] = useState(new Date());
@@ -18,7 +18,7 @@ const CustomerInfo = () => {
           #{customerData.orderId || "N/A"} / Dine in
         </p>
         <p className="text-xs text-[#ababab] font-medium mt-2">
-          {formatDate(dateTime)} {formatTime(dateTime).substring(0, 5)}
+          {formatDateAndTime(dateTime) || "N/A"}
         </p>
       </div>
 

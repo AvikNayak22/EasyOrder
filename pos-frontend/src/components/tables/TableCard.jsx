@@ -4,14 +4,19 @@ import { updateTable } from "../../redux/slices/customerSlice";
 
 import { getAvatarName, getRandomBg } from "../../utils";
 
-const TableCard = ({ name, status, initials, seats }) => {
+const TableCard = ({ id, name, status, initials, seats }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleClick = (name) => {
     if (status === "Booked") return;
 
-    dispatch(updateTable({ tableNo: name }));
+    const table = {
+      tableId: id,
+      tableNo: name,
+    };
+
+    dispatch(updateTable({ table }));
 
     navigate(`/menu`);
   };
@@ -19,6 +24,7 @@ const TableCard = ({ name, status, initials, seats }) => {
   return (
     <div
       onClick={() => handleClick(name)}
+      key={id}
       className="w-[400px] hover:bg-[#2e2e2e] bg-[#262626] p-5 rounded-lg mb-4 cursor-pointer"
     >
       <div className="flex items-center justify-between px-1">

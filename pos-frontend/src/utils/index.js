@@ -62,3 +62,18 @@ export const getTimeOfDay = () => {
     return "Morning";
   }
 };
+
+export const formatDateAndTime = (date) => {
+  const dateAndTime = new Date(date).toLocaleString("en-US", {
+    timeZone: "Asia/Kolkata",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: true,
+  });
+
+  return dateAndTime;
+};
